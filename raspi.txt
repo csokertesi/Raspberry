@@ -1,0 +1,13 @@
+,--------------------------------.
+| oooooooooooooooooooo J8   +======
+| 1ooooooooooooooooooo  PoE |   Net
+|  Wi                    1o +======
+|  Fi  Pi Model 4B  V1.5 oo      |
+|        ,----. +---+         +====
+| |D|    |SoC | |RAM|         |USB3
+| |S|    |    | |   |         +====
+| |I|    `----' +---+            |
+|                   |C|       +====
+|                   |S|       |USB2
+| pwr   |hd|   |hd| |I||A|    +====
+`-| |---|m0|---|m1|----|V|-------'
