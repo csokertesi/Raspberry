@@ -121,29 +121,29 @@ class lcd:
 
 
    # clocks EN to latch command
-   def strobe(self, data):
+   def lcd_strobe(self, data):
       self.lcd_device.write_cmd(data | En | LCD_BACKLIGHT)
       sleep(.0005)
       self.lcd_device.write_cmd(((data & ~En) | LCD_BACKLIGHT))
       sleep(.0001)
 
-   def write_four_bits(self, data):
+   def lcd_write_four_bits(self, data):
       self.lcd_device.write_cmd(data | LCD_BACKLIGHT)
       self.lcd_strobe(data)
 
    # write a command to lcd
-   def write(self, cmd, mode=0):
+   def lcd_write(self, cmd, mode=0):
       self.lcd_write_four_bits(mode | (cmd & 0xF0))
       self.lcd_write_four_bits(mode | ((cmd << 4) & 0xF0))
 
    # write a character to lcd (or character rom) 0x09: backlight | RS=DR<
    # works!
-   def write_char(self, charvalue, mode=1):
+   def lcd_write_char(self, charvalue, mode=1):
       self.lcd_write_four_bits(mode | (charvalue & 0xF0))
       self.lcd_write_four_bits(mode | ((charvalue << 4) & 0xF0))
   
    # put string function with optional char positioning
-   def display_string(self, string, line=1, pos=0):
+   def lcd_display_string(self, string, line=1, pos=0):
     if line == 1:
       pos_new = pos
     elif line == 2:
@@ -159,7 +159,7 @@ class lcd:
       self.lcd_write(ord(char), Rs)
 
    # clear lcd and set to home
-   def clear(self):
+   def lcd_clear(self):
       self.lcd_write(LCD_CLEARDISPLAY)
       self.lcd_write(LCD_RETURNHOME)
 
@@ -171,7 +171,7 @@ class lcd:
          self.lcd_device.write_cmd(LCD_NOBACKLIGHT)
 
    # add custom characters (0 - 7)
-   def load_custom_chars(self, fontdata):
+   def lcd_load_custom_chars(self, fontdata):
       self.lcd_write(0x40);
       for char in fontdata:
          for line in char:
